@@ -19,7 +19,7 @@ module "eks_blueprints" {
   managed_node_groups = {
     mg_m5 = {
       node_group_name = "managed-ondemand"
-      instance_types  = ["m5.large"]
+      instance_types  = ["t3.medium"]
       min_size        = 2
       max_size        = 4
       subnet_ids      = module.vpc.private_subnets
@@ -41,10 +41,10 @@ module "eks_blueprints" {
         "environment" = "dev"
       }
       "quota" = {
-        "requests.cpu"    = "1000m",
-        "requests.memory" = "4Gi",
-        "limits.cpu"      = "2000m",
-        "limits.memory"   = "8Gi",
+        "requests.cpu"    = "500m",
+        "requests.memory" = "2Gi",
+        "limits.cpu"      = "1000m",
+        "limits.memory"   = "2Gi",
         "pods"            = "10",
         "secrets"         = "10",
         "services"        = "10"
@@ -107,7 +107,7 @@ module "eks_blueprints_kubernetes_addons" {
     }
     workloads-dev = {
       path               = "argocd-apps/dev"
-      repo_url           = "https://github.com/lkravi/eks_blueprints_workloads"
+      repo_url           = "https://github.com/duyhuynh6789/eks_blueprints_workloads.git"
       add_on_application = false
     }
   }
@@ -118,17 +118,17 @@ module "eks_blueprints_kubernetes_addons" {
   ingress_nginx_helm_config = {
     version   = "4.0.17"
     values    = [templatefile("${path.module}/static/nginx_values.yaml", {})]
-    hostname  = "lkravi.me"
+    hostname  = "demo.d6-vnext.com"
     ssl_cert_arn  = data.aws_acm_certificate.issued.arn
   }
 
-  enable_aws_for_fluentbit            = true
-  enable_cluster_autoscaler           = true
-  enable_metrics_server               = true
-  enable_prometheus                   = true
-  enable_grafana                      = true
-  enable_external_secrets             = true
-  enable_aws_efs_csi_driver           = true
+  # enable_aws_for_fluentbit            = true
+  # enable_cluster_autoscaler           = true
+  # enable_metrics_server               = true
+  # enable_prometheus                   = true
+  # enable_grafana                      = true
+  # enable_external_secrets             = true
+  # enable_aws_efs_csi_driver           = true
   enable_aws_cloudwatch_metrics       = true
   #endregion
 

@@ -3,7 +3,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "~> 5.1.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
@@ -19,18 +19,20 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "terraform-state-202208"
-    key            = "eks-bp-demo/state.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "terraform-state-lock"
-  }
+  # backend "s3" {
+  #   bucket         = "terraform-state-202208"
+  #   key            = "eks-bp-demo/state.tfstate"
+  #   region         = "us-east-1"
+  #   dynamodb_table = "terraform-state-lock"
+  # }
+
+  backend "local" {}
 
 }
 
 # Configure the AWS Provider
 provider "aws" {
-  region = "us-east-1"
+  region = "us-west-2"
 }
 
 provider "kubernetes" {
@@ -63,6 +65,6 @@ data "aws_caller_identity" "current" {}
 data "aws_region" "current" {}
 
 data "aws_acm_certificate" "issued" {
-  domain   = "lkravi.me"
+  domain   = "*.d6-vnext.com"
   statuses = ["ISSUED"]
 }

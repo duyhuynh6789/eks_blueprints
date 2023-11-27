@@ -8,7 +8,7 @@ terraform apply --var-file inputs.tfvars
 ```
 
 ## Architecture Diagram
-![alt text](https://github.com/lkravi/eks_blueprints/blob/main/static/eks_bp.png)
+![alt text](https://github.com/duyhuynh6789/eks_blueprints/blob/main/static/eks_bp.png)
 
 ### Access CLuster
 Run update-kubeconfig command:
@@ -71,6 +71,6 @@ Then you can import predefined dashboards from grafana.com or you can create you
 * Kubernetes Cluster Dashboard - 6417
 
 ### Related Repos
-- Workloads https://github.com/lkravi/eks_blueprints_workloads
-- Demo App https://github.com/lkravi/eks_blueprints_demo_app
+- Workloads https://github.com/duyhuynh6789/eks_blueprints_workloads
+- Demo App https://github.com/duyhuynh6789/eks_blueprints_demo_app
 
